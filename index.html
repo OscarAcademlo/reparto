@@ -7,10 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://openlayers.org/en/v6.5.0/css/ol.css">
     <style>
-<<<<<<< HEAD
-        /* Estilos del cuerpo y otros componentes */
-=======
->>>>>>> d9b63d2 (cambios)
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #d16ba5, #86a8e7, #5ffbf1);
@@ -161,22 +157,12 @@
         let seguimientoActivo = false;
         let intervalId;
 
-<<<<<<< HEAD
-        // Configuración del mapa con estilo gris claro
-=======
         // Configuración del mapa
->>>>>>> d9b63d2 (cambios)
         const map = new ol.Map({
             target: 'map',
             layers: [
                 new ol.layer.Tile({
-<<<<<<< HEAD
-                    source: new ol.source.OSM({
-                        url: 'https://{a-c}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'
-                    })
-=======
                     source: new ol.source.OSM()
->>>>>>> d9b63d2 (cambios)
                 })
             ],
             view: new ol.View({
@@ -191,34 +177,9 @@
         const vectorLayer = new ol.layer.Vector({ source: vectorSource });
         map.addLayer(vectorLayer);
 
-<<<<<<< HEAD
-        // Funciones para manejar el seguimiento
-        document.getElementById('btn-whatsapp').addEventListener('click', function() {
-            const nombre = document.getElementById('nombre').value;
-            const direccion = document.getElementById('direccion').value;
-            const urlSeguimiento = `https://reparto.oscarsoft.me/seguimiento_cliente.php?nombre=${encodeURIComponent(nombre)}&direccion=${encodeURIComponent(direccion)}`;
-            const mensaje = `Hola, soy ${nombre}. Voy camino a llevar tu pedido! Puedes seguir mi ubicación aquí: ${urlSeguimiento}`;
-            window.open(`https://wa.me/?text=${encodeURIComponent(mensaje)}`, '_blank');
-        });
-
-        document.getElementById('btn-empezar').addEventListener('click', function() {
-            iniciarSeguimiento();
-            document.getElementById('map').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        document.getElementById('btn-detener').addEventListener('click', function() {
-            clearTimeout(intervalId);
-            location.reload();
-        });
-
-        document.getElementById('btn-mensaje-llegada').addEventListener('click', function() {
-            const mensaje = "Ya estoy en tu puerta, ¿me recibes?";
-            window.open(`https://wa.me/?text=${encodeURIComponent(mensaje)}`, '_blank');
-=======
         // Función para iniciar el seguimiento
         document.getElementById('btn-empezar').addEventListener('click', function() {
             iniciarSeguimiento();
->>>>>>> d9b63d2 (cambios)
         });
 
         function iniciarSeguimiento() {
@@ -263,17 +224,6 @@
                     marcadorRepartidor.getGeometry().setCoordinates(ol.proj.fromLonLat(origen));
                 }
 
-<<<<<<< HEAD
-                // Guardar ubicación del repartidor en el servidor
-                fetch('guardar_ubicacion.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ lon, lat })
-                });
-
-                // Obtener ubicación del destino y trazar ruta
-=======
->>>>>>> d9b63d2 (cambios)
                 fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(direccionDestino)}, San Carlos de Bariloche, Argentina`)
                     .then(response => response.json())
                     .then(data => {
@@ -304,11 +254,8 @@
                                 marcadorDestino.getGeometry().setCoordinates(ol.proj.fromLonLat(destino));
                             }
 
-<<<<<<< HEAD
-=======
                             map.getView().fit(vectorSource.getExtent(), { maxZoom: 14, duration: 1000 });
 
->>>>>>> d9b63d2 (cambios)
                             fetch(`https://router.project-osrm.org/route/v1/driving/${lon},${lat};${destino[0]},${destino[1]}?overview=full&geometries=geojson`)
                                 .then(response => response.json())
                                 .then(routeData => {
@@ -331,11 +278,7 @@
                                     vectorSource.addFeature(route);
 
                                     const distancia = routeData.routes[0].distance / 1000;
-<<<<<<< HEAD
                                     const velocidadPromedio = 40; // km/h
-=======
-                                    const velocidadPromedio = 40;
->>>>>>> d9b63d2 (cambios)
                                     const tiempoEstimado = (distancia / velocidadPromedio) * 60;
 
                                     document.getElementById('distancia').textContent = `Distancia: ${distancia.toFixed(2)} km`;
@@ -343,15 +286,7 @@
                                 });
                         }
                     });
-<<<<<<< HEAD
 
-                // Repetir cada 5 segundos
-                intervalId = setTimeout(actualizarUbicacionRepartidor, 5000);
-            }, function(error) {
-                alert('Error al obtener la ubicación del repartidor: ' + error.message);
-            });
-        }
-=======
             }, function(error) {
                 alert('Error al obtener la ubicación del repartidor: ' + error.message);
             });
@@ -386,7 +321,6 @@
         document.getElementById('btn-empezar').addEventListener('click', function() {
             document.getElementById('map').scrollIntoView({ behavior: 'smooth' });
         });
->>>>>>> d9b63d2 (cambios)
     </script>
 </body>
 </html>
