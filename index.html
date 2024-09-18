@@ -278,7 +278,7 @@
                                     vectorSource.addFeature(route);
 
                                     const distancia = routeData.routes[0].distance / 1000;
-                                    const velocidadPromedio = 40; // km/h
+                                    const velocidadPromedio = 40;
                                     const tiempoEstimado = (distancia / velocidadPromedio) * 60;
 
                                     document.getElementById('distancia').textContent = `Distancia: ${distancia.toFixed(2)} km`;
@@ -286,7 +286,6 @@
                                 });
                         }
                     });
-
             }, function(error) {
                 alert('Error al obtener la ubicación del repartidor: ' + error.message);
             });
